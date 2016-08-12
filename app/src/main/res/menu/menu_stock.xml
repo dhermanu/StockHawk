@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/oneWeek"
+            android:title="@string/menu_item_1_week"
+            android:checked="true"
+            app:showAsAction="never" />
+
+        <item android:id="@+id/oneMonth"
+            android:title="@string/menu_item_1_month"
+            app:showAsAction="never" />
+
+        <item android:id="@+id/threeMonths"
+            android:title="@string/menu_item_3_month"
+            app:showAsAction="never" />
+
+        <item android:id="@+id/sixMonths"
+            android:title="@string/menu_item_6_month"
+            app:showAsAction="never" />
+
+        <item android:id="@+id/oneYear"
+            android:title="@string/menu_item_1_year"
+            app:showAsAction="never" />
+    </group>
+
+</menu>

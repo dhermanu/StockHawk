@@ -69,13 +69,21 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     mServiceIntent = new Intent(this, StockIntentService.class);
     if (savedInstanceState == null){
       // Run the initialize task service so that some stocks appear upon an empty database
-      mServiceIntent.putExtra("tag", "init");
+      mServiceIntent.putExtra(getString(R.string.string_tag), getString(R.string.string_init));
       if (isConnected){
         startService(mServiceIntent);
       } else{
         networkToast();
       }
     }
+
+    if(!isConnected){
+      new MaterialDialog.Builder(mContext)
+              .title(R.string.network_error_title)
+              .content(R.string.network_error_description)
+              .positiveText(R.string.network_error_close).show();
+    }
+
     RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
     getLoaderManager().initLoader(CURSOR_LOADER_ID, null, this);
@@ -83,9 +91,18 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     mCursorAdapter = new QuoteCursorAdapter(this, null);
     recyclerView.addOnItemTouchListener(new RecyclerViewItemClickListener(this,
             new RecyclerViewItemClickListener.OnItemClickListener() {
-              @Override public void onItemClick(View v, int position) {
+              @Override
+              public void onItemClick(View v, int position) {
                 //TODO:
                 // do something on item click
+                // navigate to detail stock activity
+
+                Intent intent = new Intent(mContext, DetailStockActivity.class);
+                mCursor.moveToPosition(position);
+                intent.putExtra(getString(R.string.string_symbol),
+                        mCursor.getString
+                                (mCursor.getColumnIndex(getString(R.string.string_symbol))));
+                mContext.startActivity(intent);
               }
             }));
     recyclerView.setAdapter(mCursorAdapter);
@@ -104,19 +121,19 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                   // On FAB click, receive user input. Make sure the stock doesn't already exist
                   // in the DB and proceed accordingly
                   Cursor c = getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
-                      new String[] { QuoteColumns.SYMBOL }, QuoteColumns.SYMBOL + "= ?",
+                      new String[] { QuoteColumns.SYMBOL }, QuoteColumns.SYMBOL + getString(R.string.string_quote_column),
                       new String[] { input.toString() }, null);
                   if (c.getCount() != 0) {
                     Toast toast =
-                        Toast.makeText(MyStocksActivity.this, "This stock is already saved!",
+                        Toast.makeText(MyStocksActivity.this, getString(R.string.network_symbol_added),
                             Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.CENTER, Gravity.CENTER, 0);
                     toast.show();
                     return;
                   } else {
                     // Add the stock to DB
-                    mServiceIntent.putExtra("tag", "add");
-                    mServiceIntent.putExtra("symbol", input.toString());
+                    mServiceIntent.putExtra(getString(R.string.string_tag), getString(R.string.string_add));
+                    mServiceIntent.putExtra(getString(R.string.string_symbol), input.toString());
                     startService(mServiceIntent);
                   }
                 }
@@ -207,7 +224,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     return new CursorLoader(this, QuoteProvider.Quotes.CONTENT_URI,
         new String[]{ QuoteColumns._ID, QuoteColumns.SYMBOL, QuoteColumns.BIDPRICE,
             QuoteColumns.PERCENT_CHANGE, QuoteColumns.CHANGE, QuoteColumns.ISUP},
-        QuoteColumns.ISCURRENT + " = ?",
+        QuoteColumns.ISCURRENT + getString(R.string.string_quote_column),
         new String[]{"1"},
         null);
   }

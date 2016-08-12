@@ -1,13 +1,51 @@
 <resources>
-  <string name="app_name">Stock Hawk</string>
+    <string name="app_name">Stock Hawk</string>
 
-  <string name="action_example">Example action</string>
+    <string name="action_example" translatable="false">Example action</string>
 
-  <string name="action_settings">Settings</string>
-  <string name="action_change_units">Change Units</string>
-  <string name="symbol_search">Symbol Search</string>
-  <string name="content_test">Search for a Stock Symbol</string>
-  <string name="input_hint">FB</string>
-  <string name="input_prefill"></string>
-  <string name="network_toast">Uh-oh! This app requires an internet connection</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_change_units">Change Units</string>
+    <string name="symbol_search">Symbol Search</string>
+    <string name="content_test">Search for a Stock Symbol</string>
+    <string name="input_hint" translatable="false">FB</string>
+    <string name="input_prefill" translatable="false"></string>
+    <string name="network_toast">Uh-oh! This app requires an internet connection</string>
+
+    <string name="network_error_title">Network Error</string>
+    <string name="network_error_description">Stock list may be outdated or empty due to network unavailability</string>
+    <string name="network_error_close">CLOSE</string>
+    <string name="network_symbol_added">This stock is already saved!</string>
+    <string name="network_not_available">Not Available</string>
+    <string name="title_activity_detail_stock" translatable="false">DetailStockActivity</string>
+
+    <string name="string_loading_chart">Loading Chart&#8230;</string>
+    <string name="string_widget_title">Stock Hawk</string>
+
+    <string name="menu_item_1_week" translatable="false">1W</string>
+    <string name="menu_item_1_month" tranlatable="false">1M</string>
+    <string name="menu_item_3_month" translatable="false">3M</string>
+    <string name="menu_item_6_month" translatable="false">6M</string>
+    <string name="menu_item_1_year" translatable="false">1Y</string>
+
+    <string name="add_symbol_button">Add a new stock</string>
+
+    <!-- hardcoded java strings-->
+
+    <string name="string_symbol" translatable="false">symbol</string>
+    <string name="string_periodic" translatable="false">periodic</string>
+    <string name="string_tag" translatable="false">tag</string>
+    <string name="string_init" translatable="false">init</string>
+    <string name="string_add" translatable="false">add</string>
+    <string name="string_graph_description" translatable="false">Historical Data</string>
+    <string name="string_graph_one_week" translatable="false"> - 1W</string>
+    <string name="string_graph_one_month" translatable="false"> - 1M</string>
+    <string name="string_graph_three_months" translatable="false"> - 3M</string>
+    <string name="string_graph_six_months" translatable="false"> - 6M</string>
+    <string name="string_graph_one_year" translatable="false"> - 1Y</string>
+    <string name="string_quote_column" translatable="false"> = ?</string>
+    <string name="string_date_fromat" translatable="false">yyyy-MM-dd</string>
+    <string name="string_setBackground" translatable="false">setBackgroundResource</string>
+    <string name="string_stock_intent" translatable="false">Stock Intent Service</string>
+
+
 </resources>
